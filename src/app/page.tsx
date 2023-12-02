@@ -4,12 +4,7 @@ import Header from './components/header';
 import { OrderStatusTable } from './components/table';
 import styles from './page.module.css'
 
-interface OrderStatus {
-  id: string
-  order_id: string
-  order_status: string
-  description: string
-}
+export const revalidate = 0;
 
 export default async function Home() {  
  
