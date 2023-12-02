@@ -16,6 +16,7 @@ export const OrderStatusTable = ({result}) =>{
         <TableBody>
           {result.map((row: OrderStatus) => (
             <TableRow>
+              <TableCell key={row.id} style={{display:"none"}}></TableCell>
               <TableCell align="right">{row.order_id}</TableCell>
               <TableCell align="right">{row.order_status}</TableCell>
               <TableCell align="right">{row.description}</TableCell>
