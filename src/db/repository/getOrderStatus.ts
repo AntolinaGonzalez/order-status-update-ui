@@ -2,6 +2,7 @@ import { OrderStatus } from "@antoproject/dto/order-status";
 import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { docClient } from "../db";
 
+export const dynamic = 'force-dynamic';
 export const getOrderStatus = async() => {
     const command = new ScanCommand({
         TableName: process.env.DYNAMO_ORDER_TABLE,
