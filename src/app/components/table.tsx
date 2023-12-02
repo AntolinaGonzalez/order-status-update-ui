@@ -1,8 +1,16 @@
 import * as React from 'react';
-import { OrderStatus } from '@antoproject/dto/order-status';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { getOrderStatus } from '@antoproject/db/repository/getOrderStatus';
 
-export const OrderStatusTable = ({result}) =>{
+interface OrderStatus {
+  id: string
+  order_id: string
+  order_status: string
+  description: string
+}
+
+export const OrderStatusTable = async () =>{
+  const items = await getOrderStatus() as Array<OrderStatus>;
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 450 }} aria-label="simple table">
@@ -14,11 +22,11 @@ export const OrderStatusTable = ({result}) =>{
           </TableRow>
         </TableHead>
         <TableBody>
-          {result.map((row: OrderStatus) => (
-            <TableRow key={row.id}>
-              <TableCell align="right">{row.order_id}</TableCell>
-              <TableCell align="right">{row.order_status}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
+          {items.map((item: OrderStatus) => (
+            <TableRow key={item.id}>
+              <TableCell align="right">{item.order_id}</TableCell>
+              <TableCell align="right">{item.order_status}</TableCell>
+              <TableCell align="right">{item.description}</TableCell>
             </TableRow>
           ))}
         </TableBody>
